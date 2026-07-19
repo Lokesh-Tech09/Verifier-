@@ -110,4 +110,21 @@ app.include_router(tally.router)
 app.include_router(export.router)
 
 
+from fastapi.responses import HTMLResponse
+import os
+
+@app.get("/", response_class=HTMLResponse)
+async def serve_ui():
+    """Serve the single-page frontend."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "drawtally.html")
+    if not os.path.exists(path):
+        path = "drawtally.html"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return HTMLResponse(content=f.read())
+    except Exception as e:
+        logger.exception("Failed to read drawtally.html")
+        return HTMLResponse(content=f"Error loading UI: {e}", status_code=500)
+
+
 

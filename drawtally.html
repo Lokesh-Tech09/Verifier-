@@ -476,7 +476,10 @@
 (function(){
   // Point this at your running DrawTally FastAPI backend.
   function getApiBase(){
-    return localStorage.getItem('drawtally_api_base') || 'http://localhost:8000';
+    if (window.location.protocol === 'file:') {
+      return localStorage.getItem('drawtally_api_base') || 'http://localhost:8000';
+    }
+    return window.location.origin;
   }
   let currentJobId = null;
 
