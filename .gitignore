@@ -1,0 +1,29 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files & logs
+tmp/
+*.log
+
+# DrawTally specific
+/tmp/drawtally/
+drawtally-backend.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
